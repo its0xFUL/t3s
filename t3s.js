@@ -43,16 +43,14 @@ function createComputed(name, computeFn, dependencies) {
   return { get: signal.get, subscribe: signal.subscribe };
 }
 
-function initStyles() {
-  const hideReadersStyle = `
-    *[data-signal-read] {
-      display: contents;
-    }
-    *[data-signal-checker]:not(.visible) {
-      display: none;
-    }
-  `;
-  var hideReadersStyleSheet = document.createElement('style');
-  hideReadersStyleSheet.textContent = hideReadersStyle;
-  document.head.appendChild(hideReadersStyleSheet);
-}
+const hideReadersStyle = `
+  *[data-signal-read] {
+    display: contents;
+  }
+  *[data-signal-checker]:not(.visible) {
+    display: none;
+  }
+`;
+var hideReadersStyleSheet = document.createElement('style');
+hideReadersStyleSheet.textContent = hideReadersStyle;
+document.head.appendChild(hideReadersStyleSheet);

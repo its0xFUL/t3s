@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <title>T3S testbed</title>
@@ -17,10 +17,10 @@
     <button data-signal-checker="isCountOverZero" onclick="doubleCount()">
       Double count to <span data-signal-read="countTimesTwo"></span>
     </button>
-    <button onclick="resetCount()">
-      Reset count
-    </button>
-    <div data-signal-checker="isUserBigOnClicking">Wow! You are quite the clicker!</div>
+    <button onclick="resetCount()">Reset count</button>
+    <div data-signal-checker="isUserBigOnClicking">
+      Wow! You are quite the clicker!
+    </div>
 
     <script>
       const count = createSignal('count', 0);
@@ -62,8 +62,6 @@
       function resetCount() {
         count.set(0);
       }
-
-      initStyles();
     </script>
   </body>
 </html>
