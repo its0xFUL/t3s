@@ -8,8 +8,7 @@ function createSignal(name, initialValue) {
     subscribers.forEach(fn => fn(value));
     readers.forEach(reader => (reader.innerText = `${value}`));
     checkers.forEach(checker => {
-      if (!!value) checker.classList.add('visible');
-      else checker.classList.remove('visible');
+      checker.classList.toggle('visible', !!value);
     });
   };
 
