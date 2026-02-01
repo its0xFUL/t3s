@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>T3S testbed</title>
+    <script src="t3s.js"></script>
+    <style>
+      button {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>Count is <span data-signal-read="count"></span></h3>
+    <button onclick="increaseCount()">
+      Change count to <span data-signal-read="countPlusOne"></span>
+    </button>
+    <button data-signal-checker="isCountOverZero" onclick="doubleCount()">
+      Double count to <span data-signal-read="countTimesTwo"></span>
+    </button>
+    <button onclick="resetCount()">
+      Reset count
+    </button>
+    <div data-signal-checker="isUserBigOnClicking">Wow! You are quite the clicker!</div>
+
+    <script>
+      const count = createSignal('count', 0);
+      const countPlusOne = createComputed(
+        'countPlusOne',
+        () => {
+          return count.get() + 1;
+        },
+        [count],
+      );
+      const countTimesTwo = createComputed(
+        'countTimesTwo',
+        () => {
+          return count.get() * 2;
+        },
+        [count],
+      );
+      const isCountOverZero = createComputed(
+        'isCountOverZero',
+        () => {
+          return count.get() > 0;
+        },
+        [count],
+      );
+      const isUserBigOnClicking = createComputed(
+        'isUserBigOnClicking',
+        () => {
+          return count.get() >= 10;
+        },
+        [count],
+      );
+
+      function increaseCount() {
+        count.update(val => val + 1);
+      }
+      function doubleCount() {
+        count.update(val => val * 2);
+      }
+      function resetCount() {
+        count.set(0);
+      }
+
+      initStyles();
+    </script>
+  </body>
+</html>
