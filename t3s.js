@@ -2,7 +2,7 @@ function createSignal(name, initialValue) {
   let value = initialValue;
   const subscribers = new Set();
   const readers = document.querySelectorAll(`[data-signal-read="${name}"]`);
-  const checkers = document.querySelectorAll(`[data-signal-checker="${name}"]`);
+  const checkers = document.querySelectorAll(`[data-signal-check="${name}"]`);
 
   const notify = () => {
     subscribers.forEach(fn => fn(value));
@@ -47,7 +47,7 @@ const hideReadersStyle = `
   *[data-signal-read] {
     display: contents;
   }
-  *[data-signal-checker]:not(.visible) {
+  *[data-signal-check]:not(.visible) {
     display: none;
   }
 `;
